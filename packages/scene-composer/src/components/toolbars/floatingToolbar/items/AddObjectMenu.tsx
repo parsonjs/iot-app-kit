@@ -281,6 +281,7 @@ export const AddObjectMenu = (): JSX.Element => {
         if (ext.toUpperCase() == 'GLTF' && KnownComponentType.Animation) {
           animationComponent = {
             currentAnimations: [],
+            ruleObject: [{ animation: '', rule: '' }],
             type: 'Animation',
             uri: modelUri,
           };

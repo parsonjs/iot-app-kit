@@ -20,6 +20,25 @@ export const AnimationComponentEditor: React.FC<AnimationEditorProps> = ({ ...pr
     },
     [updateComponentInternal],
   );
+  const onUpdateRule = useCallback((animationIndex, ruleBasedMapId, noderef, component) => {
+    const ruleObject = [...component.ruleObject];
+    ruleObject.splice(animationIndex, 1, {
+      animation: component.currentAnimations[animationIndex],
+      rule: ruleBasedMapId,
+    });
+    updateComponentInternal(noderef, { ...component, ruleObject });
+  }, []);
+  const onUpdateDataBinding = useCallback((noderef, valueDataBinding, component) => {
+    const updatedComponent = { ref: component.ref, type: component.type, valueDataBinding };
+    updateComponentInternal(noderef, { ...updatedComponent });
+  }, []);
 
-  return <AnimationViewStateEditor {...props} onUpdate={onUpdate} />;
+  return (
+    <AnimationViewStateEditor
+      {...props}
+      onUpdate={onUpdate}
+      onUpdateRule={onUpdateRule}
+      onUpdateDataBinding={onUpdateDataBinding}
+    />
+  );
 };

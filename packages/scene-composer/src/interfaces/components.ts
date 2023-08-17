@@ -41,6 +41,14 @@ export interface ISubModelRefComponent extends ISceneComponent {
   selector: string | number;
 }
 
+export interface IAnimationComponent extends ISceneComponent {
+  selector?: number;
+  valueDataBinding?: IValueDataBinding;
+  ruleObject: [{ animation: string; rule: string }];
+  currentAnimations: string[];
+  uri: string;
+}
+
 export interface IAnchorComponent extends ISceneComponent {
   icon?: string;
   valueDataBinding?: IValueDataBinding;
@@ -49,11 +57,7 @@ export interface IAnchorComponent extends ISceneComponent {
   offset?: Vector3;
   chosenColor?: string;
 }
-export interface IAnimationComponent extends ISceneComponent {
-  selector?: number;
-  uri: string;
-  currentAnimations: string[];
-}
+
 /**
  * Default Anchor status strings
  */
@@ -85,15 +89,10 @@ export interface ITagData {
 export interface IEntityBindingInfo {
   dataBindingContext?: unknown;
 }
-
-export interface IDataOverlayInfo {
-  dataBindingContexts?: unknown[];
-}
-
 /**
  * Type that can be represented by different additional component data types such as ITagData | IFutureComponentData
  */
-export type AdditionalComponentData = ITagData | IEntityBindingInfo | IDataOverlayInfo;
+export type AdditionalComponentData = ITagData | IEntityBindingInfo;
 
 /**
  * Callback signature for selection of with Widgets.

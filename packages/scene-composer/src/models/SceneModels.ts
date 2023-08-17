@@ -153,6 +153,7 @@ export namespace Component {
   }
 
   export interface Animation extends IComponent {
+    ruleObject: [{ rule: ''; animation: '' }];
     selector?: number;
     uri: string;
     currentAnimations: string[];

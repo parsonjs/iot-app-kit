@@ -6,6 +6,7 @@ import {
   IotTwinMakerIconNamespace,
   IotTwinMakerNamespaceSeparator,
   IotTwinMakerNumberNamespace,
+  IotTwinMakerAnimationNamespace,
   IotTwinMakerOpacityNamespace,
   SceneResourceInfo,
   SceneResourceType,
@@ -21,6 +22,8 @@ export const convertToIotTwinMakerNamespace = (type: SceneResourceType, value: s
       return `${IotTwinMakerColorNamespace}${IotTwinMakerNamespaceSeparator}${value}`;
     case SceneResourceType.Opacity:
       return `${IotTwinMakerOpacityNamespace}${IotTwinMakerNamespaceSeparator}${value}`;
+    case SceneResourceType.Animation:
+      return `${IotTwinMakerAnimationNamespace}${IotTwinMakerNamespaceSeparator}${value}`;
     default:
       return value;
   }
@@ -45,6 +48,7 @@ export const getSceneResourceInfo = (target: string | undefined): SceneResourceI
   const map = {
     [IotTwinMakerIconNamespace + IotTwinMakerNamespaceSeparator]: SceneResourceType.Icon,
     [IotTwinMakerColorNamespace + IotTwinMakerNamespaceSeparator]: SceneResourceType.Color,
+    [IotTwinMakerAnimationNamespace + IotTwinMakerNamespaceSeparator]: SceneResourceType.Animation,
     [IotTwinMakerNumberNamespace]: SceneResourceType.Number,
     [IotTwinMakerOpacityNamespace + IotTwinMakerNamespaceSeparator]: SceneResourceType.Opacity,
   };
@@ -56,9 +60,8 @@ export const getSceneResourceInfo = (target: string | undefined): SceneResourceI
     const mapKey = Object.keys(map).find((key) => target.startsWith(key));
     if (mapKey) {
       type = map[mapKey];
+      const newValue = target.substring(mapKey.length);
       const statuses = DefaultAnchorStatus;
-      const newValue = target.substring(mapKey.length).split('-')[0];
-
       switch (type) {
         case SceneResourceType.Icon:
           value = statuses[newValue] ?? getSceneResourceDefaultValue(type);

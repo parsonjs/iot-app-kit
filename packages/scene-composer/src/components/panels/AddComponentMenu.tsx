@@ -159,10 +159,11 @@ export const AddComponentMenu: React.FC<AddComponentMenuProps> = ({ onSelect }) 
 
   const handleAddAnimations = useCallback(() => {
     if (!selectedSceneNodeRef) return;
-
     let selector = animationComponent.selector || 0;
     selector = selector + 1;
-    const updatedComponent = { ...animationComponent, selector };
+    const ruleObject = [...animationComponent.ruleObject];
+    ruleObject.push({ animation: '', rule: '' });
+    const updatedComponent = { ...animationComponent, selector, ruleObject };
     updateComponentInternal(selectedSceneNodeRef, updatedComponent);
   }, [selectedSceneNodeRef, selectedSceneNode]);
 

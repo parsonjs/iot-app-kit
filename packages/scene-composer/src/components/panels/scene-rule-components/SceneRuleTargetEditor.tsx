@@ -16,6 +16,7 @@ import { colors } from '../../../utils/styleUtils';
 import { SceneRuleTargetColorEditor } from './SceneRuleTargetColorEditor';
 import { SceneRuleTargetIconEditor } from './SceneRuleTargetIconEditor';
 import SceneRuleTargetOpacityEditor from './SceneRuleTargetOpacityEditor';
+import { SceneRuleTargetAnimationEditor } from './SceneRuleTargetAnimationEditor';
 
 const i18nSceneResourceTypeStrings = defineMessages({
   Icon: {
@@ -32,6 +33,10 @@ const i18nSceneResourceTypeStrings = defineMessages({
   },
   Opacity: {
     defaultMessage: 'Opacity',
+    description: 'Scene Resource types in a dropdown menu',
+  },
+  Animation: {
+    defaultMessage: 'Animation',
     description: 'Scene Resource types in a dropdown menu',
   },
 });
@@ -108,6 +113,12 @@ export const SceneRuleTargetEditor: React.FC<ISceneRuleTargetEditorProps> = ({
       )}
       {targetInfo.type === SceneResourceType.Color && (
         <SceneRuleTargetColorEditor
+          targetValue={targetInfo.value}
+          onChange={(targetValue) => onChange(convertToIotTwinMakerNamespace(targetInfo.type, targetValue))}
+        />
+      )}
+      {targetInfo.type === SceneResourceType.Animation && (
+        <SceneRuleTargetAnimationEditor
           targetValue={targetInfo.value}
           onChange={(targetValue) => onChange(convertToIotTwinMakerNamespace(targetInfo.type, targetValue))}
         />

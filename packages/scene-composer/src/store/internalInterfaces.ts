@@ -12,7 +12,6 @@ import {
   ISceneComponent,
   ISceneDocument,
   ISceneNode,
-  IAnimationComponent,
   ITransform,
   ITransformConstraint,
   IValueDataBinding,
@@ -22,6 +21,7 @@ import {
   URIModifier,
   KnownComponentType,
   WidgetClickEventCallback,
+  IAnimationComponent,
   ISubModelRefComponent,
   IDataOverlayComponent,
   IEntityBindingComponent,
@@ -110,11 +110,11 @@ export type ICameraComponentInternal = ISceneComponentInternal & ICameraComponen
 
 export type IModelRefComponentInternal = ISceneComponentInternal & IModelRefComponent;
 
+export type IAnimationComponentInternal = IDataBoundSceneComponentInternal & IAnimationComponent;
+
 export type ISubModelRefComponentInternal = ISceneComponentInternal & ISubModelRefComponent;
 
 export type IAnchorComponentInternal = IDataBoundSceneComponentInternal & IAnchorComponent;
-
-export type IAnimationComponentInternal = ISceneComponentInternal & IAnimationComponent;
 
 export type IColorOverlayComponentInternal = IDataBoundSceneComponentInternal & IColorOverlayComponent;
 
